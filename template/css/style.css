@@ -1,7 +1,6 @@
 body {
 	z-index: -2;
 }
-
 body, .content {
 	background: rgba(13,13,13,0.9); /* 2B2B2B */
 	color: #fff;
@@ -23,16 +22,21 @@ hr {
 	background-size: cover;
 }
 
-.headimg h1 {
+.login h1 {
 	padding: 0;
 	margin: 0;
-	margin-top: 200px;
+	margin-top: 100px;
 	text-align: center;
 	font-size: 80px;
 	font-family: 'Source Sans Pro', sans-serif;
 	font-weight: 200;
 }
 
+@media only screen and (max-width: 40em) { 
+	.login h1 {
+		margin-top: 40px;
+	}
+}
 
 .headimg h4 {
 	padding: 0;
@@ -43,6 +47,14 @@ hr {
 	font-weight: 300;
 }
 
+.login h4 {
+	padding: 0;
+	margin: 0;
+	text-align: center;
+	font-size: 17px;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 300;
+}
 
 .headimg .inner {
 	position: relative;
