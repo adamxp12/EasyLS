@@ -7,6 +7,7 @@ hr {
 	border-color: #3E3E3E;
 }
 
+
 .headimg {
 	position: fixed;
 	top: 0;
@@ -84,7 +85,6 @@ hr {
 	margin-top: 100vh;
 	min-height: 100%;
 	width: 100%;
-	z-index: 2;
 }
 
 .content h1 {
