@@ -1,0 +1,114 @@
+body, .content {
+	background: rgba(13,13,13,0.9); /* 2B2B2B */
+	color: #fff;
+}
+
+hr {
+	border-color: #3E3E3E;
+}
+
+.headimg {
+	position: fixed;
+	top: 0;
+	z-index: -1;
+	height: 100%; /* 600px */
+	width: 100%;
+	background: linear-gradient(rgba(63,112,57,0.6), rgba(63,112,57,0.6)), url('../img/head.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.headimg h1 {
+	padding: 0;
+	margin: 0;
+	margin-top: 200px;
+	text-align: center;
+	font-size: 80px;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 200;
+}
+
+.login h1 {
+	padding: 0;
+	margin: 0;
+	margin-top: 100px;
+	text-align: center;
+	font-size: 80px;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 200;
+}
+
+.headimg h4 {
+	padding: 0;
+	margin: 0;
+	text-align: center;
+	font-size: 30px;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 300;
+}
+
+.login h4 {
+	padding: 0;
+	margin: 0;
+	text-align: center;
+	font-size: 17px;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 300;
+}
+
+.headimg .inner {
+	position: relative;
+	height: 100vh;
+}
+
+.headimg .bottom {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+}
+
+.headimg .bottom h1 {
+	margin: 0;
+	font-size: 40px;
+}
+
+.headimg .bottom h4 {
+	margin: 0;
+	font-size: 30px;
+	font-weight: 200;
+}
+
+.content {
+	position: relative;
+	margin-top: 100vh;
+	min-height: 100%;
+	width: 100%;
+	z-index: 2;
+}
+
+.content h1 {
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 300;
+	text-align: center;
+	margin: 0;
+}
+
+.content h1 span {
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 200;
+}
+
+.content h4 {
+	text-align: center;
+	font-size: 20px;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 200;
+}
+
+
+.footer p {
+	font-size: 14px;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 300;
+}
