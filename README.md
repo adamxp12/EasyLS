@@ -1,2 +1,2 @@
 # EasyLS
-A free PHP Link Shortener
+Coming soon, A free PHP link shortener
