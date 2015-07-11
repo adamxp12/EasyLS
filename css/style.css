@@ -11,6 +11,10 @@ hr {
 }
 
 
+.login {
+	position: relative;
+}
+
 .headimg {
 	position: fixed;
 	top: 0;
