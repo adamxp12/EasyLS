@@ -1,6 +1,6 @@
 {
   "name": "easyls-node",
-  "version": "1.0.0",
+  "version": "1.1.7",
   "description": "EasyLS Link Shortener NodeJS Edition",
   "main": "server.js",
   "scripts": {

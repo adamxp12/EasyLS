@@ -3,7 +3,8 @@
 // Created By Adam Blunt (adamblunt.me & adamxp12.com) @admblnt
 
 
-var express = require('express'),
+var packagejson = require('./package.json'),
+ express = require('express'),
  app = require('express')(),
  http = require('http').Server(app),
  session = require('express-session'),
@@ -16,7 +17,7 @@ var express = require('express'),
  func = require('./func'),
  config = require('./conf/config');
 
-var ver = 1.1;
+var ver = packagejson.version;
 var verName = ver+' alpha';
 
 // Express Setup
