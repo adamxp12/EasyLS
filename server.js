@@ -14,8 +14,8 @@ var packagejson = require('./package.json'),
  mongoose = require('mongoose'),
  bcrypt = require('bcrypt-nodejs'),
  fs = require('fs'),
- func = require('./func'),
  config = require('./conf/config');
+
 
 var ver = packagejson.version;
 var verName = ver+' alpha';
@@ -74,11 +74,19 @@ var shortLink = mongoose.model('shortLink', shortLinkSchema);
 var header = fs.readFileSync("./includes/header.inc", "utf8", function(err, data) { if (err) throw err; });
 var footer = fs.readFileSync("./includes/footer.inc", "utf8", function(err, data) { if (err) throw err; });
 var login = fs.readFileSync("./includes/login.inc", "utf8", function(err, data) { if (err) throw err; });
-var dashboard = fs.readFileSync("./includes/dashboard.inc", "utf8", function(err, data) { if (err) throw err; });
 var shortlinkspage = fs.readFileSync("./includes/shortlinks.inc", "utf8", function(err, data) { if (err) throw err; });
 var addshortlinkpage = fs.readFileSync("./includes/newshortlink.inc", "utf8", function(err, data) { if (err) throw err; });
 var shortlinkeditpage = fs.readFileSync("./includes/newshortlink.inc", "utf8", function(err, data) { if (err) throw err; });
 var menu = fs.readFileSync("./includes/menu.inc", "utf8", function(err, data) { if (err) throw err; });
+
+var func = require('./func');
+
+// Route setup
+var loginroute = require('./routes/login');
+var dashboardroute = require('./routes/dashboard');
+var shortlinkroute = require('./routes/shortlink');
+
+
 
 // Root directory
 // TODO: add redirect and landing page functions
@@ -88,25 +96,7 @@ app.get('/', function(req,res){
 });
 
 // Login Page
-app.get('/admin/login', [initlogin, addcounts, sendlogin]);
-
-function initlogin(req, res, next) {
-	session=req.session;
-	if(session.user) {
-		res.redirect('/admin');
-	} else {
-		page = header+login+footer;
-    req.page = page;
-		next();
-	}
-};
-
-function sendlogin(req, res) {
-	req.page = req.page.replace('{linkcount}', req.linkcount);
-	req.page = req.page.replace('{systemname}', config.systemname);
-	req.page = req.page.replace('{version}', verName);
-	res.send(req.page);
-}
+app.get('/admin/login', [loginroute.initlogin, loginroute.countlinks, loginroute.sendlogin]);
 
 
 // Logout User
@@ -118,85 +108,8 @@ app.get('/admin/logout',function(req,res){
 
 // Admin Dashboard
 // TODO: Add interactivity
-app.get('/admin', [initdashboard, addcounts, senddashboard]);
+app.get('/admin', [dashboardroute.initdashboard, dashboardroute.addcounts, dashboardroute.senddashboard]);
 
-function initdashboard(req, res, next) {
-	session=req.session;
-	if(session.user) {
-		page = header+dashboard+footer;
-		page = func.replaceall(page, session.user, '{currentuser}');
-		page = page.replace('{menu}', menu);
-		req.page = page;
-		next();
-
-	} else {
-		res.redirect('/admin/login');
-	}
-}
-
-
-
-function addcounts(req, res, next) {
-	// Count links
-	shortLink.count({}, function( err, count){
-    	req.linkcount = count;
-	});
-
-	// Count Clicks
-	req.totalclicks = 0;
-	req.twitterclicks = 0;
-	shortLink.aggregate([
-        { $group: {
-            _id: '$shortlink',
-            clickcount: { $sum: '$clicks'},
-            twitterclickcount: { $sum: '$twitterclicks'},
-            facebookclickcount: { $sum: '$facebookclicks'}
-        }}
-    ], function (err, results) {
-        if (err) {
-            console.error(err);
-            req.totalclicks += 0;
-    		req.twitterclicks += 0;
-    		req.facebookclicks += 0;
-        } else {
-            for (i = 0; i < results.length; i++) {
-    			req.totalclicks += results[i].clickcount;
-    			req.twitterclicks += results[i].twitterclickcount;
-    			req.facebookclicks += results[i].facebookclickcount;
-			}
-        }
-    }
-);
-
-	// Make shortlink table
-	var linklist = "";
-	shortLink.find()
-	.sort({'date': -1})
-	.limit(3)
-	.exec(function(err, links) {
-		for(var i=0; i<links.length; i++) {
-			linklist = linklist + "<tr> \
-			<td>" + links[i].shortlink + "</td> \
-			<td>" + links[i].longurl + "</td> \
-			<td>" + links[i].clicks + "</td> \
-			<td>" + links[i].twitterclicks + "</td> \
-			</tr> ";
-			req.shortlinks = linklist;
-		}
-		next();
-	});
-
-
-}
-
-function senddashboard(req, res) {
-	req.page = req.page.replace('{linkcount}', req.linkcount);
-	req.page = req.page.replace('{totalclicks}', req.totalclicks);
-	req.page = req.page.replace('{twitterclicks}', req.twitterclicks);
-	req.page = req.page.replace('{facebookclicks}', req.facebookclicks);
-	req.page = req.page.replace('{shortlinks}', req.shortlinks);
-	res.send(req.page);
-}
 
 // Shortlinks page
 // TODO: Add pagnation at bottom
@@ -233,10 +146,21 @@ function makeshortlinkstable(req, res, next) {
   				<ul class="menu vertical shortlinkeditmenu"> \
   					<li><a href="/admin/edit/'+ links[i].shortlink + '">Edit ' + links[i].shortlink + '</a></li> \
   					<li><a href="#" class="copy" data-clipboard-text="http://admb.ga/' + links[i].shortlink + '" data-clipboard-target="#' + links[i].shortlink + '">Copy Link</a></li> \
-  					<li><a href="#" class="reddelete">Delete</a></li> \
+  					<li><a class="reddelete" data-open="'+ links[i].shortlink +'delete">Delete</a></li> \
 				</ul> \
 			</div> \
-			</tr> ';
+			</tr> \
+			<div class="reveal" id="'+ links[i].shortlink +'delete" data-reveal> \
+  <h1>You sure?</h1> \
+  <p class="lead">This will delete <b>'+ links[i].shortlink +'</b></p> \
+  <p>This is a <span style="color:red;">DESTRUCTIVE</span> process, you can not undo this</p> \
+  <p>You 100% sure you want to delete <kbd>'+ links[i].shortlink +'</kbd> </p>\
+  <a class="button alert large" href="/admin/delete/'+ links[i].shortlink +'">GO Ahead</a> \
+  <a data-close class="button success large">NO! I WANT THAT</a> \
+  <button class="close-button" data-close aria-label="Close modal" type="button"> \
+    <span aria-hidden="true">&times;</span> \
+  </button> \
+</div>';
 		}
 		req.easylslinklist = linklist;
 		next();
@@ -288,6 +212,24 @@ app.post('/admin/addshortlink', function(req,res){
 	}
 });
 
+//Delete Shortlink
+app.get('/admin/delete/:shortlink', function(req,res){
+	session=req.session;
+	if(session.user) {
+		shortLink.findOneAndRemove({shortlink: req.params.shortlink}, function(err, result){
+		if(result) {
+			res.redirect('/admin/shortlinks/1');
+		} else {
+			// No shortlink found so redirect to homepage
+			res.redirect('/');
+		}
+	}) 
+	} else {
+		res.redirect('/admin/login');
+	}
+
+});
+
 // Login handler
 app.post('/login', function(req,res){
 	session=req.session;
@@ -326,34 +268,16 @@ app.post('/new', function(req,res){
 });
 
 // Shortlink
-app.get('/:shortlink', [findshortlink, redirectshortlink]);
+app.get('/:shortlink', [shortlinkroute.findshortlink, shortlinkroute.redirectshortlink]);
 
-function findshortlink(req, res, next) {
-	shortLink.findOne({shortlink: req.params.shortlink}, function(err, result){
-		if(result) {
-			// YAS, WE FIND A SHORTURL
-			result.clicks = result.clicks+1;
-			result.save();
-			req.result = result;
-			next();
-		} else {
-			// No shortlink found so redirect to homepage
-			res.redirect('/');
-		}
-	})
 
-}
 
-function redirectshortlink(req, res, next) {
-	// TODO: Logic for smartlinks
-	res.redirect(req.result.longurl);
-}
 
-function countshortlinks() {
-	shortLink.count({}, function( err, count){
-    	return count;
-	});
-}
+// function countshortlinks() {
+// 	shortLink.count({}, function( err, count){
+//     	return count;
+// 	});
+// }
 
 app.get('/admin/edit/:shortlinkid', [initshortlinkedit, getshortlinkpagedata, makeshortlinkeditpage]);
 
