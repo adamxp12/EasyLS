@@ -40,16 +40,16 @@ app.use(session({
 var Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId;
 
-	// User Schema
-var adminUserSchema = new Schema({
+// User Schema
+var UserSchema = new Schema({
     username    : String,
     email     : String,
     password      : String
 });
 
-var adminUser = mongoose.model('adminUser', adminUserSchema);
+var easyLsUser = mongoose.model('easyLsUser', UserSchema);
 
-	// Shortlink Schema
+// Shortlink Schema
 var shortLinkSchema = new Schema({
     shortlink    : { type : String , unique : true, required : true, dropDups: true },
     longurl     : { type : String , unique : true, required : true, dropDups: true },
@@ -71,6 +71,7 @@ var shortLink = mongoose.model('shortLink', shortLinkSchema);
 
 // Template files
 	// Tacky code but it works great so don't judge me
+	// Why complicate thing when the basic stuff like this works great
 var header = fs.readFileSync("./includes/header.inc", "utf8", function(err, data) { if (err) throw err; });
 var footer = fs.readFileSync("./includes/footer.inc", "utf8", function(err, data) { if (err) throw err; });
 var login = fs.readFileSync("./includes/login.inc", "utf8", function(err, data) { if (err) throw err; });
@@ -79,12 +80,17 @@ var addshortlinkpage = fs.readFileSync("./includes/newshortlink.inc", "utf8", fu
 var shortlinkeditpage = fs.readFileSync("./includes/newshortlink.inc", "utf8", function(err, data) { if (err) throw err; });
 var menu = fs.readFileSync("./includes/menu.inc", "utf8", function(err, data) { if (err) throw err; });
 
+// The following must be included last as they need to access the above varibles and schemas
+
+// Load functions file
 var func = require('./func');
 
 // Route setup
 var loginroute = require('./routes/login');
 var dashboardroute = require('./routes/dashboard');
 var shortlinkroute = require('./routes/shortlink');
+var shortlinkeditroute = require('./routes/shortlinkedit');
+
 
 
 
@@ -212,7 +218,9 @@ app.post('/admin/addshortlink', function(req,res){
 	}
 });
 
-//Delete Shortlink
+// Delete Shortlink handler
+// Deletes shortlinks, currently any logged in user can delete shortlinks
+// TODO: Add permision system so only users who created the link or superusers can delete them
 app.get('/admin/delete/:shortlink', function(req,res){
 	session=req.session;
 	if(session.user) {
@@ -231,12 +239,14 @@ app.get('/admin/delete/:shortlink', function(req,res){
 });
 
 // Login handler
+// TODO: Add error responses
 app.post('/login', function(req,res){
 	session=req.session;
-	adminUser.findOne({ username: req.body.user }, function(err, user) {
+	easyLsUser.findOne({ username: req.body.user }, function(err, user) {
     	if (err) return console.error(err);
     	if(user == null) {
     		// Username not in database
+    		console.log("Not in database");
     		res.redirect('/admin/login');
     	} else {
     		// We found a user, now check if thier password matches
@@ -244,6 +254,8 @@ app.post('/login', function(req,res){
 				session.user = req.body.user;
 				res.redirect('/admin/');
 			} else {
+				// Password not correct ;(
+					console.log("Not same password");
 				res.redirect('/admin/login');
 			}
     	}
@@ -253,9 +265,11 @@ app.post('/login', function(req,res){
 
 });
 // New User Test
+// This is used to create new users for testing, this needs to be improved for public release
+// Solution should be a user creation wizard when you first start EasyLS with a blank database
 // TODO: Remove
 app.post('/new', function(req,res){
-	var newuser = new adminUser({
+	var newuser = new easyLsUser({
     	username    : req.body.user,
     	email     : "test@test.coms",
     	password      : bcrypt.hashSync(req.body.pass)
@@ -267,40 +281,33 @@ app.post('/new', function(req,res){
 	res.redirect('/admin/logout');
 });
 
-// Shortlink
+// Shortlink handler
 app.get('/:shortlink', [shortlinkroute.findshortlink, shortlinkroute.redirectshortlink]);
 
 
 
+app.get('/admin/edit/:shortlinkid', [shortlinkeditroute.initshortlinkedit, shortlinkeditroute.getshortlinkpagedata, shortlinkeditroute.makeshortlinkeditpage]);
 
-// function countshortlinks() {
-// 	shortLink.count({}, function( err, count){
-//     	return count;
-// 	});
+// function initshortlinkedit(req, res, next) {
+//   session=req.session;
+// 	if(session.user) {
+//     page = header+shortlinkeditpage+footer
+//     page = func.replaceall(page, session.user, '{currentuser}');
+// 		page = page.replace('{menu}', menu);
+//     req.easylspage = page;
+//     next();
+//   } else {
+//     res.redirect('/admin/login');
+//   }
 // }
 
-app.get('/admin/edit/:shortlinkid', [initshortlinkedit, getshortlinkpagedata, makeshortlinkeditpage]);
+// function getshortlinkpagedata(req, res, next) {
+//   next()
+// }
 
-function initshortlinkedit(req, res, next) {
-  session=req.session;
-	if(session.user) {
-    page = header+shortlinkeditpage+footer
-    page = func.replaceall(page, session.user, '{currentuser}');
-		page = page.replace('{menu}', menu);
-    req.easylspage = page;
-    next();
-  } else {
-    res.redirect('/admin/login');
-  }
-}
-
-function getshortlinkpagedata(req, res, next) {
-  next()
-}
-
-function makeshortlinkeditpage(req, res, next) {
-  res.send(req.easylspage);
-}
+// function makeshortlinkeditpage(req, res, next) {
+//   res.send(req.easylspage);
+// }
 
 
 // *************************************************
