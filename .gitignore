@@ -41,3 +41,6 @@ public
 
 # conf files for security reasons
 conf
+
+# jsconifg.json
+jsconfig.json
