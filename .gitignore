@@ -45,3 +45,6 @@ conf
 # Visual studio code files
 jsconfig.json
 .vscode
+
+# jsHint config files
+.jshintrc

@@ -172,7 +172,7 @@ function makeshortlinkstable(req, res, next) {
 		next();
 
 	});
-};
+}
 
 
 function makeshortlinkspage(req, res) {
@@ -231,7 +231,7 @@ app.get('/admin/delete/:shortlink', function(req,res){
 			// No shortlink found so redirect to homepage
 			res.redirect('/');
 		}
-	}) 
+	}); 
 	} else {
 		res.redirect('/admin/login');
 	}
@@ -244,7 +244,7 @@ app.post('/login', function(req,res){
 	session=req.session;
 	easyLsUser.findOne({ username: req.body.user }, function(err, user) {
     	if (err) return console.error(err);
-    	if(user == null) {
+    	if(user === null) {
     		// Username not in database
     		console.log("Not in database");
     		res.redirect('/admin/login');
@@ -300,7 +300,7 @@ console.log(' / /___/ /_/ (__  ) /_/ / /______/ / ');
 console.log('/_____/\\__,_/____/\\__, /_____/____/ ');
 console.log('                 /____/              ');
 console.log('');
-console.log('****************************************************************')
+console.log('****************************************************************');
 console.log('EasyLS NodeJS Edition V'+ver+' - System Name: '+config.systemname);
 console.log('****************************************************************');
 console.log('');
