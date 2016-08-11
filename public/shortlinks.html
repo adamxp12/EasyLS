@@ -1,0 +1,137 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EasyLS</title>
+  <link rel="stylesheet" href="css/foundation.min.css" />
+  <link rel="stylesheet" href="css/app.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,300" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+  <body>
+    <div class="off-canvas-wrapper">
+      <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+        <!-- Menu -->
+        <div class="off-canvas position-left reveal-for-large adminmenu" id="offCanvas" data-off-canvas>
+          <!-- Logo -->
+          <div class="logo">
+            <h1>EasyLS</h1>
+            <h5>Version 1.2 DevAlpha<br>NodeJS Edition</h5>
+          </div>
+
+          <hr> <!-- User Section -->
+          <img src="https://avatars.io/twitter/adamxp12" class="profile circle">
+          <div class="float-right usercontent">
+            <h6>Hey! <b>adamxp12</b></h6>
+            <a href="#" class="button alert tiny expanded">Logout</a>
+          </div>
+
+          <hr>
+          <!-- Menu -->
+          <ul class="menu vertical">
+            <li><a href="/admin/dashboard/"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a></li>
+            <li><a href="/admin/shortlinks/1"><i class="fa fa-fw fa-database"></i> Short Links</a></li>
+            <li><a href="/admin/configure/"><i class="fa fa-fw fa-cog"></i> Configure</a></li>
+            <li><a href="/admin/about/"><i class="fa fa-fw fa-question"></i> About</a></li>
+          </ul>
+        </div>
+        <!-- End Menu -->
+
+
+        <!-- Page Content -->
+        <div class="off-canvas-content maincontent" data-off-canvas-content>
+          <div class="page-head with-bg">
+            <button type="button" class="button secondary hide-for-large" data-toggle="offCanvas"><i class="fa fa-fw fa-bars"></i></button>
+            <h3>Shortlinks</h3>
+            <p>System Name: Adam Blunt (admb.ga)</p>
+          </div>
+
+          <div class="page-inner">
+
+            <div class="row">
+              <div class="medium-7 columns">
+                <div class="callout">
+                  <p>Welcome to your new EasyLS system</p>
+                  <p>Well done for installing the fancy new and modern NodeJS edition of EasyLS.<br>Packed with more features than the PHP version with improved performance</p>
+                </div>
+              </div>
+
+              <div class="medium-5 columns">
+                <div class="callout">
+                  <h3>Quick Shorten</h3>
+
+                  <div class="input-group">
+                    <input name="url" class="input-group-field" placeholder="http://google.com" required="" type="url">
+                    <div class="input-group-button">
+                      <input type="submit" class="button success" value="Shorten">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="medium-12 columns">
+                <div class="callout">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Shortlink</th>
+                        <th width="500px">URL</th>
+                        <th>Clicks</th>
+                        <th>Twitter Clicks</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>12345</td>
+                        <td>http://www.parcelforce.com/track-trace?trackNumber=PBGW2469848001</td>
+                        <td>23</td>
+                        <td>23</td>
+                      </tr>
+                      <tr>
+                        <td>12345</td>
+                        <td>http://www.parcelforce.com/track-trace?trackNumber=PBGW2469848001</td>
+                        <td>23</td>
+                        <td>23</td>
+                      </tr>
+                      <tr>
+                        <td>12345</td>
+                        <td>http://www.parcelforce.com/track-trace?trackNumber=PBGW2469848001</td>
+                        <td>23</td>
+                        <td>23</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <ul class="pagination" role="navigation" aria-label="Pagination">
+  <li class="pagination-previous disabled">Previous <span class="show-for-sr">page</span></li>
+  <li class="current"><span class="show-for-sr">You're on page</span> 1</li>
+  <li><a href="#" aria-label="Page 2">2</a></li>
+  <li><a href="#" aria-label="Page 3">3</a></li>
+  <li><a href="#" aria-label="Page 4">4</a></li>
+  <li class="ellipsis" aria-hidden="true"></li>
+  <li><a href="#" aria-label="Page 12">12</a></li>
+  <li><a href="#" aria-label="Page 13">13</a></li>
+  <li class="pagination-next"><a href="#" aria-label="Next page">Next <span class="show-for-sr">page</span></a></li>
+</ul>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <!-- End Page Content -->
+        </div>
+      </div>
+    </body>
+
+    <script src="js/vendor/jquery.min.js"></script>
+    <script src="js/vendor/what-input.min.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+  </html>

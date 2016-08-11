@@ -1,4 +1,19 @@
-<div class="off-canvas-wrapper">
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EasyLS</title>
+  <link rel="stylesheet" href="css/foundation.min.css" />
+  <link rel="stylesheet" href="css/app.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,300" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+  <body>
+    <div class="off-canvas-wrapper">
       <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
         <!-- Menu -->
         <div class="off-canvas position-left reveal-for-large adminmenu" id="offCanvas" data-off-canvas>
@@ -9,17 +24,19 @@
           </div>
 
           <hr> <!-- User Section -->
-          <img src="https://avatars.io/twitter/{currentuser}/large" class="profile circle">
-          <div class="float-left usercontent">
-            <h6>Hey! <b>{currentuser}</b></h6>
-            <a href="/admin/logout" class="button alert tiny expanded">Logout</a>
+          <img src="https://avatars.io/twitter/adamxp12" class="profile circle">
+          <div class="float-right usercontent">
+            <h6>Hey! <b>adamxp12</b></h6>
+            <a href="#" class="button alert tiny expanded">Logout</a>
           </div>
 
           <hr>
           <!-- Menu -->
           <ul class="menu vertical">
-            {menu}
-            
+            <li><a href="/admin/dashboard/"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a></li>
+            <li><a href="/admin/shortlinks/1"><i class="fa fa-fw fa-database"></i> Short Links</a></li>
+            <li><a href="/admin/configure/"><i class="fa fa-fw fa-cog"></i> Configure</a></li>
+            <li><a href="/admin/about/"><i class="fa fa-fw fa-question"></i> About</a></li>
           </ul>
         </div>
         <!-- End Menu -->
@@ -37,19 +54,19 @@
             <div class="row">
 
               <div class="small-6 medium-3 columns">
-                <div class="callout"><h5>Short Links</h5><h4>{linkcount}</h4></div>
+                <div class="callout"><h5>Short Links</h5><h4>49</h4></div>
               </div>
 
               <div class="small-6 medium-3 columns">
-                <div class="callout"><h5>Total Clicks</h5><h4>{totalclicks}</h4></div>
+                <div class="callout"><h5>Total Clicks</h5><h4>126</h4></div>
               </div>
 
               <div class="small-6 medium-3 columns">
-                <div class="callout"><h5>Twitter Clicks</h5><h4>{twitterclicks}</h4></div>
+                <div class="callout"><h5>Twitter Clicks</h5><h4>7</h4></div>
               </div>
 
               <div class="small-6 medium-3 columns">
-                <div class="callout"><h5>Facebook Clicks</h5><h4>{facebookclicks}</h4></div>
+                <div class="callout"><h5>Facebook Clicks</h5><h4>3</h4></div>
               </div>
 
             </div>
@@ -92,7 +109,24 @@
                       </tr>
                     </thead>
                     <tbody>
-                      {shortlinks}
+                      <tr>
+                        <td>12345</td>
+                        <td>http://www.parcelforce.com/track-trace?trackNumber=PBGW2469848001</td>
+                        <td>23</td>
+                        <td>23</td>
+                      </tr>
+                      <tr>
+                        <td>12345</td>
+                        <td>http://www.parcelforce.com/track-trace?trackNumber=PBGW2469848001</td>
+                        <td>23</td>
+                        <td>23</td>
+                      </tr>
+                      <tr>
+                        <td>12345</td>
+                        <td>http://www.parcelforce.com/track-trace?trackNumber=PBGW2469848001</td>
+                        <td>23</td>
+                        <td>23</td>
+                      </tr>
                     </tbody>
                   </table>
                   <a class="button tiny success float-right">View More</a><div class="clearfix"></div>
@@ -105,4 +139,11 @@
           <!-- End Page Content -->
         </div>
       </div>
-    </div>
+    </body>
+
+    <script src="js/vendor/jquery.min.js"></script>
+    <script src="js/vendor/what-input.min.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+  </html>

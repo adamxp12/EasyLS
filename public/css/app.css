@@ -1,0 +1,195 @@
+body {
+	background: rgba(210,210,210,1);
+	background-position: bottom;
+}
+
+small, label, span {
+	color: #777;
+}
+
+.reddelete {
+	color: #CF000F;
+}
+
+.reddelete:hover {
+	color: #C0392B;
+}
+
+.shortlinkeditmenu a:hover {
+	background: #ECECEC;
+}
+
+.light {
+	color: #888;
+}
+
+.black {
+	background: rgba(50,50,50,0.8);
+}
+
+.button.black:hover {
+	background: rgba(200,200,200,0.8);
+}
+
+.logincontainer {
+	padding-top: 25vh;
+}
+
+.logincontainer img {
+	max-width: 480px;
+	max-height: 120px;
+}
+
+.logincontainer span {
+	line-height: 80px;
+	font-size: 20px;
+}
+
+.logincontainer h1 {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    font-size: 80px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 200;
+}
+
+.rightborder {
+	border-right: 1px solid #aaa;
+}
+
+.leftborder {
+	border-left: 1px solid #aaa;
+}
+
+.topborder {
+	border-top: 1px solid #aaa;
+}
+
+.bottomborder {
+	border-bottom: 1px solid #aaa;
+}
+
+.nomargin {
+	margin: 0;
+}
+
+.bottommargin {
+	margin-bottom: 1rem;
+}
+
+.loginbox {
+	padding: 25px;
+	padding-top: 45px;
+	min-height: 300px;
+}
+
+
+@media screen and (max-width: 39.9375em) {
+	body {
+		background-attachment: fixed;
+	}
+
+	.logincontainer {
+		padding-top: 30px;
+	}
+
+	.logincontainer p {
+		display: none;
+	}
+
+	.loginbox {
+		border: none;
+	}
+
+}
+
+
+.adminmenu {
+	min-height: 100vh;
+	background: rgba(210,210,210,1);
+	color: #777;
+}
+
+.adminmenu .logo {
+	padding: 10px;
+	margin: 0;
+	text-align: center;
+}
+
+.adminmenu .logo h1 {
+	margin: 0;
+    font-size: 55px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 200;
+}
+
+.adminmenu .logo h5 {
+	margin: 0;
+    font-size: 17px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 200;
+}
+
+.adminmenu .menu a {
+	color: #444;
+}
+
+.adminmenu .menu a:hover,.adminmenu .logo:hover {
+	color: #fff;
+	background: #27ae60;
+}
+
+.adminmenu hr {
+	margin: 0px;
+}
+
+.circle {
+	border-radius: 50%;
+}
+
+.profile {
+	max-height: 80px;
+	float: left;
+	padding: 5px;
+}
+
+.usercontent {
+	padding: 10px;
+}
+
+.usercontent .button {
+	margin: 0px;
+}
+
+.maincontent {
+	background: rgba(236, 240, 241,1.0);
+	height: 100vh;
+	max-width: 100%;
+	overflow-x:hidden
+}
+
+.page-head.with-bg {
+	background: linear-gradient(rgba(98,103,105,0.6),rgba(98,103,105,0.6)),url("../img/head.jpg");
+	background-size: cover;
+	background-position: center;
+	color: rgba(236, 240, 241,0.8);
+}
+
+.page-head.with-bg p {
+	color: rgba(189, 195, 199,1.0);
+}
+
+.page-head {
+	background: rgba(218, 223, 225,1);	
+	padding: 25px;
+	/*color: #2c3e50; */
+}
+
+.page-head p {
+	color: #7f8c8d;
+}
+
+.page-inner {
+	padding: 15px;
+}
