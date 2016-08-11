@@ -1,5 +1,6 @@
 // EasyLS Node Edition
 // A free link shortener
+// Powered by NodeJS, Express and MongoDB
 // Created By Adam Blunt (adamblunt.me & adamxp12.com) @admblnt
 
 
