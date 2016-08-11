@@ -141,7 +141,7 @@ small, label, span {
 }
 
 .adminmenu hr {
-	margin: 0px;
+	margin: 0;
 }
 
 .circle {
@@ -159,7 +159,7 @@ small, label, span {
 }
 
 .usercontent .button {
-	margin: 0px;
+	margin: 0;
 }
 
 .maincontent {
