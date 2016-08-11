@@ -75,14 +75,11 @@ var shortLink = mongoose.model('shortLink', shortLinkSchema);
 	// Why complicate thing when the basic stuff like this works great
 var header = fs.readFileSync("./includes/header.inc", "utf8", function(err, data) { if (err) throw err; });
 var footer = fs.readFileSync("./includes/footer.inc", "utf8", function(err, data) { if (err) throw err; });
-var login = fs.readFileSync("./includes/login.inc", "utf8", function(err, data) { if (err) throw err; });
-//var shortlinkspage = fs.readFileSync("./includes/shortlinks.inc", "utf8", function(err, data) { if (err) throw err; });
 var addshortlinkpage = fs.readFileSync("./includes/newshortlink.inc", "utf8", function(err, data) { if (err) throw err; });
-var shortlinkeditpage = fs.readFileSync("./includes/newshortlink.inc", "utf8", function(err, data) { if (err) throw err; });
 var menu = fs.readFileSync("./includes/menu.inc", "utf8", function(err, data) { if (err) throw err; });
 
-// The following must be included last as they need to access the above varibles and schemas
-
+// The following files must be included last as they need to access the above varibles and schemas
+// i.e functions and routes must be below this or else things will go very wrong
 // Load functions file
 var func = require('./func');
 
