@@ -42,5 +42,6 @@ public
 # conf files for security reasons
 conf
 
-# jsconifg.json
+# Visual studio code files
 jsconfig.json
+.vscode

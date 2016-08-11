@@ -288,28 +288,6 @@ app.get('/:shortlink', [shortlinkroute.findshortlink, shortlinkroute.redirectsho
 
 app.get('/admin/edit/:shortlinkid', [shortlinkeditroute.initshortlinkedit, shortlinkeditroute.getshortlinkpagedata, shortlinkeditroute.makeshortlinkeditpage]);
 
-// function initshortlinkedit(req, res, next) {
-//   session=req.session;
-// 	if(session.user) {
-//     page = header+shortlinkeditpage+footer
-//     page = func.replaceall(page, session.user, '{currentuser}');
-// 		page = page.replace('{menu}', menu);
-//     req.easylspage = page;
-//     next();
-//   } else {
-//     res.redirect('/admin/login');
-//   }
-// }
-
-// function getshortlinkpagedata(req, res, next) {
-//   next()
-// }
-
-// function makeshortlinkeditpage(req, res, next) {
-//   res.send(req.easylspage);
-// }
-
-
 // *************************************************
 // * Print console text and start server listening *
 // *************************************************
