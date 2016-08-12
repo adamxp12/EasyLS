@@ -89,7 +89,7 @@ var dashboardroute = require('./routes/dashboard');
 var shortlinkroute = require('./routes/shortlink');
 var shortlinksroute = require('./routes/shortlinkspage');
 var shortlinkeditroute = require('./routes/shortlinkedit');
-
+var apiroute = require('./routes/api')(app);
 
 
 
