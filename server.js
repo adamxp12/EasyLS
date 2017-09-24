@@ -15,6 +15,7 @@ var packagejson = require('./package.json'),
  mongoose = require('mongoose'),
  bcrypt = require('bcrypt-nodejs'),
  fs = require('fs'),
+ shortid = require('shortid'),
  config = require('./conf/config');
 
 
@@ -137,9 +138,14 @@ app.get('/admin/addshortlink', function(req,res){
 
 app.post('/admin/addshortlink', function(req,res){
 	session=req.session;
+	if(req.body.shortlink) {
+		shrtlnk = req.body.shortlink;
+	} else {
+		shrtlnk = shortid.generate()
+	}
 	if(session.user) {
 		var newshortlink = new shortLink({
-    		shortlink    : req.body.shortlink,
+    		shortlink    : shrtlnk,
     		longurl     : req.body.longurl,
     		createdby      : session.user,
     		linktype		: req.body.linktype,
@@ -194,7 +200,7 @@ app.post('/login', function(req,res){
 				res.redirect('/admin/');
 			} else {
 				// Password not correct ;(
-					console.log("Not same password");
+				console.log("Not same password");
 				res.redirect('/admin/login');
 			}
     	}

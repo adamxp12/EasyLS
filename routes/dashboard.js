@@ -1,5 +1,6 @@
 var fs = require('fs'),
 	mongoose = require('mongoose');
+	config = require('../conf/config')
 
 var shortLink = require('mongoose').model('shortLink');
 
@@ -18,6 +19,7 @@ module.exports = {
 		page = header+dashboard+footer;
 		page = func.replaceall(page, session.user, '{currentuser}');
 		page = page.replace('{menu}', menu);
+		page = page.replace('{sysname}', config.systemname);
 		req.page = page;
 		next();
 
@@ -35,6 +37,9 @@ module.exports = {
 	// Count Clicks
 	req.totalclicks = 0;
 	req.twitterclicks = 0;
+	// The following causes is throwing a DeprecationWarning. Mongo's bigest short comming is simple counting of values without loops.
+	// MySQL can do it simply. why cant Mongo :(
+	// Because this works and cba to write something else it will have to do.
 	shortLink.aggregate([
         { $group: {
             _id: '$shortlink',
@@ -81,6 +86,7 @@ module.exports = {
 	req.page = req.page.replace('{totalclicks}', req.totalclicks);
 	req.page = req.page.replace('{twitterclicks}', req.twitterclicks);
 	req.page = req.page.replace('{facebookclicks}', req.facebookclicks);
+	console.log(req.facebookclicks)
 	req.page = req.page.replace('{shortlinks}', req.shortlinks);
 	res.send(req.page);
 }

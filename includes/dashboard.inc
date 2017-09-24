@@ -9,7 +9,7 @@
           </div>
 
           <hr> <!-- User Section -->
-          <img src="https://avatars.io/twitter/{currentuser}/large" class="profile circle">
+          <!--<img src="https://avatars.io/twitter/{currentuser}/large" class="profile circle">-->
           <div class="float-left usercontent">
             <h6>Hey! <b>{currentuser}</b></h6>
             <a href="/admin/logout" class="button alert tiny expanded">Logout</a>
@@ -30,7 +30,7 @@
           <div class="page-head with-bg">
             <button type="button" class="button secondary hide-for-large" data-toggle="offCanvas"><i class="fa fa-fw fa-bars"></i></button>
             <h3>Dashboard</h3>
-            <p>System Name: Adam Blunt (admb.ga)</p>
+            <p>System Name: {sysname}</p>
           </div>
 
           <div class="page-inner">
@@ -67,10 +67,13 @@
                   <h3>Quick Shorten</h3>
 
                   <div class="input-group">
-                    <input name="url" class="input-group-field" placeholder="http://google.com" required="" type="url">
+                  <form method="POST" action="/admin/addshortlink">
+                    <input name="linktype" type="hidden" value="quick">
+                    <input name="longurl" class="input-group-field" placeholder="http://google.com" required="" type="url">
                     <div class="input-group-button">
                       <input type="submit" class="button success" value="Shorten">
                     </div>
+                    </form>
                   </div>
                 </div>
               </div>
