@@ -9,7 +9,6 @@
           </div>
 
           <hr> <!-- User Section -->
-          <img src="https://avatars.io/twitter/adamxp12" class="profile circle">
           <div class="float-right usercontent">
             <h6>Hey! <b>adamxp12</b></h6>
             <a href="#" class="button alert tiny expanded">Logout</a>
@@ -29,7 +28,7 @@
           <div class="page-head with-bg">
             <button type="button" class="button secondary hide-for-large" data-toggle="offCanvas"><i class="fa fa-fw fa-bars"></i></button>
             <h3>New Shortlink</h3>
-            <p>System Name: Adam Blunt (admb.ga)</p>
+            <p>System Name: {sysname}</p>
           </div>
 
           <div class="page-inner">
@@ -64,29 +63,29 @@
 
                       <div class="medium-6 columns rightborder">
                         <label>Long URL*
-                          <input type="URL" name="longurl" required="required" placeholder="https://adamblunt.me"></label>
+                          <input type="URL" name="longurl" required="required" value="{longurl}"></label>
 
                           <label>Shorturl ID <small> - Bit after shortdomain</small>
-                          <input type="text" name="shortlink" placeholder="abc123" class="nomargin"><small>Your shortlink will be http://admb.ga/abc123</small></label><div class="bottommargin"></div>
+                          <input type="text" name="shortlink" placeholder="abc123" value="{shortlink}" class="nomargin"><small>Your shortlink will be http://admb.ga/abc123</small></label><div class="bottommargin"></div>
 
                       </div>
 
                       <div class="medium-6 columns">
                         <label>Shortlink Type*
                           <select id="linktype" name="linktype">
-                            <option value="generic">Generic</option>
-                            <option value="amazon">Amazon Affiliate Link</option>
-                            <option value="youtube">YouTube Link</option>
+                            <option value="generic" {genericchecked}>Generic</option>
+                            <option value="amazon" {amazonchecked}>Amazon Affiliate Link</option>
+                            <option value="youtube" {youtubechecked}>YouTube Link</option>
                           </select></label>
                           <label id="amazoncode">Amazon Affiliate Code*
-                            <input id="amazoncodeinput" class="nomargin" type="text"><small>Make sure the URL does not already contain any affiliate code as this can mess up the link.</small></label>
+                            <input id="amazoncodeinput" class="nomargin" type="text" value="{affid}"><small>Make sure the URL does not already contain any affiliate code as this can mess up the link.</small></label>
                       </div>
 
 
                     </div>
                   </div>
                   <div class="tabs-panel" id="smartlink">
-                    <input id="smartlinkcheckbox" type="checkbox"><label for="smartlinkcheckbox">Enable SmartLink</label>
+                    <input id="smartlinkcheckbox" type="checkbox" {smartlinkchecked}><label for="smartlinkcheckbox">Enable SmartLink</label>
                     <div id="smartlinkcontent">
                       <div class="row">
                       <div class="small-12 medium-6 columns">

@@ -59,6 +59,7 @@ var shortLinkSchema = new Schema({
     linktype		: String,
     date 			: Date,
     amazonaffcode	: String,
+	smartlink		: {type: Boolean, default: false},
     shortlinktype	: String,
     shortlinkcontent	: String,
     clicks		: Number,
