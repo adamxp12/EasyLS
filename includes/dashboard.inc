@@ -44,46 +44,40 @@
                 <div class="callout"><h5>Total Clicks</h5><h4>{totalclicks}</h4></div>
               </div>
 
-              <div class="small-6 medium-3 columns">
+              <!--<div class="small-6 medium-3 columns">
                 <div class="callout"><h5>Twitter Clicks</h5><h4>{twitterclicks}</h4></div>
               </div>
 
               <div class="small-6 medium-3 columns">
                 <div class="callout"><h5>Facebook Clicks</h5><h4>{facebookclicks}</h4></div>
+              </div>-->
+              <div class="medium-6 columns">
+                <div class="callout">
+                  <h5>Quick Shorten</h5>
+                  <form method="POST" action="/admin/addshortlink">
+                  <div class="input-group">
+                  
+                    <input name="linktype" type="hidden" value="quick">
+                    <input name="longurl" class="input-group-field" placeholder="http://google.com" required="" type="url">
+                    <div class="input-group-button">
+                      <input type="submit" class="button success" value="Shorten">
+                    </div>
+                  </div>
+                  </form>
+                </div>
               </div>
 
             </div>
 
             <div class="row">
-              <div class="medium-7 columns">
+              <div class="medium-5 columns">
                 <div class="callout">
                   <p>Welcome to your new EasyLS system</p>
                   <p>Well done for installing the fancy new and modern NodeJS edition of EasyLS.<br>Packed with more features than the PHP version with improved performance</p>
                 </div>
               </div>
 
-              <div class="medium-5 columns">
-                <div class="callout">
-                  <h3>Quick Shorten</h3>
-
-                  <div class="input-group">
-                  <form method="POST" action="/admin/addshortlink">
-                    <input name="linktype" type="hidden" value="quick">
-                    <input name="longurl" class="input-group-field" placeholder="http://google.com" required="" type="url">
-                    <div class="input-group-button">
-                      <input type="submit" class="button success" value="Shorten">
-                    </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="medium-3 columns">
-                <div class="callout">f</div>
-              </div>
-              <div class="medium-9 columns">
+              <div class="medium-7 columns">
                 <div class="callout">
                   <table>
                     <thead>
@@ -91,14 +85,13 @@
                         <th>Shortlink</th>
                         <th width="500px">URL</th>
                         <th>Clicks</th>
-                        <th>Twitter Clicks</th>
                       </tr>
                     </thead>
                     <tbody>
                       {shortlinks}
                     </tbody>
                   </table>
-                  <a class="button tiny success float-right">View More</a><div class="clearfix"></div>
+                  <a class="button tiny success float-right" href="/admin/shortlinks/1">View More</a><div class="clearfix"></div>
                 </div>
               </div>
             </div>

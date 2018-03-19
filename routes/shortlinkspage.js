@@ -19,6 +19,7 @@ module.exports = {
 		page = header+shortlinkspage+footer;
 		page = func.replaceall(page, session.user, '{currentuser}');
 		page = page.replace('{menu}', menu);
+		page = page.replace('{sysname}', config.systemname);
 		req.easylspage = page;
 		next();
 	} else {
@@ -39,7 +40,6 @@ module.exports = {
 			<td>' + links[i].shortlink + '</td> \
 			<td>' + links[i].longurl + '</td> \
 			<td>' + links[i].clicks + '</td> \
-			<td>' + links[i].twitterclicks +'</td> \
 			<td><button class="button tiny" type="button" data-toggle="' + links[i].shortlink + '"><i class="fa fa-fw fa-bars"></i></button> \
 			<div class="dropdown-pane" id="' + links[i].shortlink + '" data-dropdown data-hover="true" data-hover-pane="true"> \
   				<ul class="menu vertical shortlinkeditmenu"> \

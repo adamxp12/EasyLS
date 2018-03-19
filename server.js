@@ -130,6 +130,7 @@ app.get('/admin/addshortlink', function(req,res){
 		page = header+addshortlinkpage+footer;
 		page = func.replaceall(page, session.user, '{currentuser}');
 		page = page.replace('{menu}', menu);
+		page = page.replace('{sysname}', config.systemname);
 		res.send(page);
 	} else {
 		res.redirect('/admin/login');

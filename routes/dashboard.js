@@ -37,6 +37,7 @@ module.exports = {
 	// Count Clicks
 	req.totalclicks = 0;
 	req.twitterclicks = 0;
+	req.facebookclicks = 0;
 	// The following causes is throwing a DeprecationWarning. Mongo's bigest short comming is simple counting of values without loops.
 	// MySQL can do it simply. why cant Mongo :(
 	// Because this works and cba to write something else it will have to do.
@@ -74,7 +75,6 @@ module.exports = {
 			<td>" + links[i].shortlink + "</td> \
 			<td>" + links[i].longurl + "</td> \
 			<td>" + links[i].clicks + "</td> \
-			<td>" + links[i].twitterclicks + "</td> \
 			</tr> ";
 			req.shortlinks = linklist;
 		}
@@ -84,8 +84,8 @@ module.exports = {
 	senddashboard: function(req, res) {
 	req.page = req.page.replace('{linkcount}', req.linkcount);
 	req.page = req.page.replace('{totalclicks}', req.totalclicks);
-	req.page = req.page.replace('{twitterclicks}', req.twitterclicks);
-	req.page = req.page.replace('{facebookclicks}', req.facebookclicks);
+	//req.page = req.page.replace('{twitterclicks}', req.twitterclicks);
+	//req.page = req.page.replace('{facebookclicks}', req.facebookclicks);
 	console.log(req.facebookclicks)
 	req.page = req.page.replace('{shortlinks}', req.shortlinks);
 	res.send(req.page);

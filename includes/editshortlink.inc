@@ -9,9 +9,9 @@
           </div>
 
           <hr> <!-- User Section -->
-          <div class="float-right usercontent">
-            <h6>Hey! <b>adamxp12</b></h6>
-            <a href="#" class="button alert tiny expanded">Logout</a>
+          <div class="float-left usercontent">
+            <h6>Hey! <b>{currentuser}</b></h6>
+            <a href="/admin/logout" class="button alert tiny expanded">Logout</a>
           </div>
 
           <hr>
@@ -27,23 +27,17 @@
         <div class="off-canvas-content maincontent" data-off-canvas-content>
           <div class="page-head with-bg">
             <button type="button" class="button secondary hide-for-large" data-toggle="offCanvas"><i class="fa fa-fw fa-bars"></i></button>
-            <h3>New Shortlink</h3>
+            <h3>Edit Shortlink</h3>
             <p>System Name: {sysname}</p>
           </div>
 
           <div class="page-inner">
 
             <div class="row">
-              <div class="medium-7 columns">
+              <div class="medium-12 columns">
                 <div class="callout">
                   <p>Making a new shortlink is a peice of cake</p>
                   <p>Just plop a url into the URL field and you'r done if all you want is a basic shortlink.</p>
-                </div>
-              </div>
-
-              <div class="medium-5 columns">
-                <div class="callout">
-
                 </div>
               </div>
             </div>
@@ -52,8 +46,7 @@
               <div class="medium-12 columns">
                 <ul class="tabs" data-tabs id="example-tabs">
                   <li class="tabs-title is-active"><a href="#basic" aria-selected="true">Basic</a></li>
-                  <li class="tabs-title"><a href="#smartlink">SmartLink</a></li>
-                  <li class="tabs-title"><a href="#landing">Landing Page</a></li>
+                  <!--<li class="tabs-title"><a href="#smartlink">SmartLink</a></li>-->
                   <li class="tabs-title"><a href="#share">Share</a></li>
                 </ul>
                 <form method="POST">
@@ -131,9 +124,6 @@
                       </div>
 
                     </div>
-                  </div>
-                  <div class="tabs-panel" id="landing">
-                    <p>landing</p>
                   </div>
                   <div class="tabs-panel" id="share">
                     <p>share</p>

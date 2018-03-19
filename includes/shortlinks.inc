@@ -9,10 +9,9 @@
       </div>
 
       <hr> <!-- User Section -->
-      <img src="https://avatars.io/twitter/{currentuser}" class="profile circle">
-      <div class="float-right usercontent">
+      <div class="float-left usercontent">
         <h6>Hey! <b>{currentuser}</b></h6>
-        <a href="#" class="button alert tiny expanded">Logout</a>
+        <a href="/admin/logout" class="button alert tiny expanded">Logout</a>
       </div>
 
       <hr>
@@ -29,7 +28,7 @@
       <div class="page-head with-bg">
         <button type="button" class="button secondary hide-for-large" data-toggle="offCanvas"><i class="fa fa-fw fa-bars"></i></button>
         <h3>Shortlinks</h3>
-        <p>System Name: Adam Blunt (admb.ga)</p>
+        <p>System Name: {sysname}</p>
       </div>
 
       <div class="page-inner">
@@ -65,7 +64,6 @@
                     <th>Shortlink</th>
                     <th width="500px">URL</th>
                     <th>Clicks</th>
-                    <th>Twitter Clicks</th>
                     <th>Edit</th>
                   </tr>
                 </thead>
